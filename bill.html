@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Electricity Bill</title>
+    <style> 
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center">Electricity Tariff</h2>
+    <h3 style="text-align: center">Tariff Rates</h3>
+    <h3 style="float:left"> 1.Domestic Consumers</h3>
+    <table style="width: 100%">
+        <tr>
+
+        <tr>
+            <td style="float:left"> (a)Service and energy charge(single phase)</td>
+        </tr>
+        <tr>
+            <td rowspan="2">KWh, Monthly Units</td>
+        </tr>
+        <tr>
+            <td colspan="2">5 Ampere</td>
+            <td colspan="2">15 Ampere</td>
+            <td colspan="2">30 Ampere</td>
+            <td colspan="2">60 Ampere</td>
+        </tr>
+        <tr>
+            <td></td>
+        <td>Service Charge</td>
+        <td>Energy Charge</td>
+        <td>Service Charge</td>
+        <td>Energy Charge</td>
+        <td>Service Charge</td>
+        <td>Energy Charge</td>
+        <td>Service Charge</td>
+        <td>Energy Charge</td>
+        </tr>
+        <tr>
+            <td>0-20</td>
+            <td>30.00</td>
+            <td>3.00</td>
+            <td>50.00</td>
+            <td>4.00</td>
+            <td>75.00</td>
+            <td>5.00</td>
+            <td>125.00</td>
+            <td>6.00</td>
+        </tr>
+        <tr>
+                <td>21-30</td>
+                <td>50.00</td>
+                <td>7.00</td>
+                <td>75.00</td>
+                <td>7.00</td>
+                <td>100.00</td>
+                <td>7.00</td>
+                <td>150.00</td>
+                <td>7.00</td>
+        </tr>
+        <tr>
+                <td>31-50</td>
+                <td>75.00</td>
+                <td>8.50</td>
+                <td>100.00</td>
+                <td>8.50</td>
+                <td>125.00</td>
+                <td>8.50</td>
+                <td>175.00</td>
+                <td>8.50</td>
+        </tr>
+        <tr>
+                <td>51-150</td>
+                <td>100.00</td>
+                <td>10.00</td>
+                <td>125.00</td>
+                <td>10.00</td>
+                <td>150.00</td>
+                <td>10.00</td>
+                <td>200.00</td>
+                <td>10.00</td>
+        </tr>
+        <tr>
+                <td>151-250</td>
+                <td>125.00</td>
+                <td>11.00</td>
+                <td>150.00</td>
+                <td>11.00</td>
+                <td>175.00</td>
+                <td>11.00</td>
+                <td>225.00</td>
+                <td>11.00</td>
+        </tr>
+        <tr>
+                <td>251-400</td>
+                <td>150.00</td>
+                <td>12.00</td>
+                <td>175.00</td>
+                <td>12.00</td>
+                <td>200.00</td>
+                <td>12.00</td>
+                <td>250.00</td>
+                <td>12.00</td>
+        </tr>
+        <tr>
+                <td>Above 400</td>
+                <td>175.00</td>
+                <td>13.00</td>
+                <td>200.00</td>
+                <td>13.00</td>
+                <td>225.00</td>
+                <td>13.00</td>
+                <td>275.00</td>
+                <td>13.00</td>
+        </tr>
+    </table>
+    <p style="float: left"><h3>Electricity bill Calculation</h3></p>
+    <table>
+        <tr>
+            
+        </tr>
+        <tr>
+            <td>Enter Previous Meter reading: </td> 
+            <td><input id="oldReading" type="number" placeholder="type number only"> </td>
+            </tr>
+            <tr>
+                 <td>Enter Current number:</td>
+                 <td><input id="newReading"  type="number" placeholder="type number only"> </td>
+            </tr>
+            
+            <tr>
+                <td><input type="button" onclick="calc()" value="Click for Calculate" ></td>
+            </tr>
+            <tr>
+                <td>Total energy unit consumed: </td>
+                <td> <h4 id="unit">  </h4>  </td>
+            </tr>
+            <tr>
+                <td>Your total bill amount is: </td>
+                <td> <h4 id="Total">  </h4>  </td>
+            </tr>
+        </table>
+    </section>
+        <script>
+           var oldReading; 
+           var newReading;
+           var unit;
+           var Cost;
+           var Total;
+           var serCharge=[30,50,75,100,125,150,175];
+        function calc() { 
+            oldReading = document.getElementById ("oldReading").value;
+            newReading= document.getElementById ("newReading").value;
+            unit=newReading-oldReading;
+                if(unit>0 && unit<=20){
+                    Cost=3*unit;
+                    Total=Cost+serCharge[0]; 
+                    disp(Total);  
+                }
+                else if(unit>20 && unit<=30){
+                    Cost=20*3 + (unit-20)*7;
+                    Total=Cost+serCharge[1]; 
+                    alert(Cost +","+ Total);
+                    disp(Total);
+                }
+                else if(unit>30 && unit<=50){
+                    Cost=20*3 + 10*7 + (unit-30)*8.5;
+                    Total=Cost+serCharge[2];
+                    alert(Cost +","+ Total);
+                    disp(Total);
+                }
+                else if(unit>50 && unit<=150){
+                    Cost=20*3 + 10*7 +  20*8.5 + (unit-50)*10;
+                    Total=Cost+serCharge[3];
+                    alert(Cost +","+ Total);
+                    disp(Total); 
+                }
+                else if(unit>150 && unit<=250){
+                    Cost=20*3 + 10*7 +  20*8.5 + 100*10 + (unit-150)*11; 
+                    Total=Cost+serCharge[4];
+                    alert(Cost +","+ Total);
+                    disp(Total);
+                }
+                else if(unit>250 && unit<=400){
+                    Cost=20*3 + 10*7 +  20*8.5 + 100*10 + 100*11 + (unit-250)*12; 
+                    Total=Cost+serCharge[5];
+                    alert(Cost +","+ Total);
+                    disp(Total); 
+                }
+                else if(unit>400 ){
+                    Cost=20*3 + 10*7 +  20*8.5 + 100*10 + 100*11 + 150*12 + (unit-400)*13;
+                    Total=Cost+serCharge[6]; 
+                    alert(Cost +","+ Total);
+                    disp(Total); 
+                }
+        }
+            function disp(Total){ 
+                document.getElementById("Total").innerHTML=Total;
+                document.getElementById("unit").innerHTML=unit;
+            }       
+    </script>
+    </body>
+    </html>
